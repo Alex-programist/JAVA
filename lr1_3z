@@ -1,0 +1,38 @@
+package com.company;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner in = new Scanner(System.in);
+        System.out.println("Введіть цифру8 від 1 до 7");
+        int n = in.nextInt();
+        switch (n) {
+            case 1:
+                System.out.println("Понеділок");
+                break;
+            case 2:
+                System.out.println("Вівторок");
+                break;
+            case 3:
+                System.out.println("Середа");
+                break;
+            case 4:
+                System.out.println("Четверг");
+                break;
+            case 5:
+                System.out.println("Пятниця");
+                break;
+            case 6:
+                System.out.println("Субота");
+                break;
+            case 7:
+                System.out.println("Неділя");
+                break;
+            default:
+                System.out.println("Ведено не вірну цифру");
+        }
+    }
+}
+
