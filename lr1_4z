@@ -1,0 +1,23 @@
+package com.company;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        float x;
+        Scanner in = new Scanner(System.in);
+        System.out.println("Введіть число a");
+        float a = in.nextFloat();
+        System.out.println("Введіть число b");
+        float b = in.nextFloat();
+        System.out.println("Введіть число y");
+        float y = in.nextFloat();
+        x = (float) (Math.sqrt(a - Math.pow(b, 2)) + Math.sqrt(a * b) + y / 2);
+            if (Double.isNaN(x)) {
+                System.out.println("Введено не припустимі значення");
+            } else {
+                System.out.println("Значення X:"+x);
+            }
+        }
+    }
+
