@@ -1,29 +1,38 @@
 package com.company;
-
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         String n ;
         Scanner in = new Scanner(System.in);
         do {
-            System.out.println("1 - Завдання 1");
-            System.out.println("2 - Завдання 2");
-            System.out.println("3 - Завершити роботу");
+            System.out.println("1 - Завдання 1 - З клавіатури вводиться текстовий рядок, видалити з тексту всі коми.");
+            System.out.println("2 - Завдання 2 - З клавіатури вводиться текстовий рядок, видалити всі слова, передостання літера яких голосна.");
+            System.out.println("3 - Завдання 3 - В  консольному  арифметичному  калькуляторі  замість  консольного  введення-виведення реалізувати  роботу  з  файлом.  Вхідний  файл  містить  обчислюваний  вираз.  Вихідний –обчислюваний вираз, текст \"Результат=\" і сам результат обчислення..");
+            System.out.println("4 - Завдання 4 - З файлу імопртується текст і результат під час роботи записуєтсья в інший файл. (вивести всі слова, що мають парну кількість літер.)");
+            System.out.println("5 - Завершити роботу");
             n=in.next();
             switch (n) {
                 case "1":
-                    System.out.println("Завдання 1 - Поміняти перший і передостаній стовпці матриці.");
-                    Task1.mat();
+                    Task1.Textwithout();
                     break;
                 case "2":
-                    System.out.println("Завдання 2 - Ввести квадратну матрицю цілих чисел. Визначити, чи ця матриця є магiчним квадратом, для якого суми елементiв кожного рядка i стовпчика є однаковими..");
-                    Task2.squere();
+                    Task2.main(args);
                     break;
                 case "3":
+                    Task44.few();
+
+                    break;
+                case "4":
+                    fw.main();
+                    break;
+                case "5":
                     return;
             }
-        } while (n!="3");
+        } while (n!="5");
     }
-}
+        }
+
+

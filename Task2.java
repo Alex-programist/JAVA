@@ -1,58 +1,40 @@
 package com.company;
-import java.util.Random;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Scanner;
-
 public class Task2 {
-    public static int RRandom(int min, int max)
-    {
-        return (int) ((Math.random() * (max-min)) + min);
-    }
-    public static void ArrayRandom(int mat[][]) {
+    public static String[] RemoveFromArray(String[] arr, int index) {
+        String[] newArr = new String[arr.length - 1];
 
-        for (int i = 0; i < mat.length; i++) {
-            for (int j = 0; j < mat[i].length; j++) {
-                mat[i][j] = RRandom(1, 1);
-            }
+        for (int i = 0; i < index; i++) {
+            newArr[i] = arr[i];
         }
-    }
-        static boolean isMagicSquare(int mat[][],int N) {
-           int sumd1 = 0, sumd2 = 0;
-            for (int i = 0; i < N; i++) {
-                sumd1 += mat[i][i];
-                sumd2 += mat[i][N - 1 - i];
-            }
-            if (sumd1 != sumd2)
-                return false;
-            for (int i = 0; i < N; i++) {
 
-                int rowSum = 0, colSum = 0;
-                for (int j = 0; j < N; j++) {
-                    rowSum += mat[i][j];
-                    colSum += mat[j][i];
-                }
-                if (rowSum != colSum || colSum != sumd1)
-                    return false;
-            }
-            return true;
+        for (int i = index; i < newArr.length; i++) {
+            newArr[i] = arr[i + 1];
         }
-        public static void squere() {
-            int N;
-            System.out.println("Ввеідть розмір квадратної матриці:");
-            Scanner sc = new Scanner(System.in);
-            N = sc.nextInt();
-            int mat[][]=new int [N] [N];
-            ArrayRandom(mat);
-            //int[] [] nums = new int [] []{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};;
-            System.out.println("Вивід елементів квадратної матриці");
-            for (int i = 0; i < N; i++) {
-                for (int j = 0; j < N; j++) {
-                    System.out.printf ( "%5d", mat[i][j]);
+        return newArr;
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String str;
+        System.out.println("Ведіть слова:");
+        str = sc.nextLine();
+        String words[] = str.split(" ");
+        for (int i = 0; i < words.length; i++) {
+                str = words[i];
+                char symbol = str.charAt(str.length() - 2);
+                if (symbol == 'а' || symbol == 'у' || symbol == 'е' || symbol == 'і' || symbol == 'и' || symbol == 'О') {
+                    words = RemoveFromArray(words, i);
+                    i--;
                 }
-                System.out.println();
-                }
-                if (isMagicSquare(mat,N))
-                System.out.println("Матриця  є магічним квадратом");
-            else
-                System.out.println("Матриця  не є магічним квадратом");
+            }
+          System.out.println("Вивід слів:");
+            for (int i = 0; i < words.length; i++) {
+                System.out.println(words[i]);
+            }
+
         }
     }
+
+
