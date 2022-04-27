@@ -1,0 +1,252 @@
+package com.example.demo1;
+
+import javafx.application.Application;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.control.skin.LabeledSkinBase;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.Objects;
+
+public class HelloApplication extends Application {
+    private Stage programStage;
+    private Stage ProgramStage1;
+    private Stage ProgramStage2;
+    private Scene scene;
+    private Scene second;
+    private Scene third;
+    private Group objects = new Group();
+    private Group objects1 = new Group();
+    private Group objects2 = new Group();
+    private TextField a;
+    private TextField b;
+    private Label TextRes1;
+    private Label TextRes2;
+
+    public static void main(String[] args) {
+        launch();
+    }
+
+    @Override
+    public void start(Stage stage) throws IOException {
+        programStage = stage;
+        SetStage("Лабораторна 9 - 10 Варіант");
+    }
+
+    private void SetStage(String tittle) {
+        scene = new Scene(objects, 500, 270);
+        scene.setFill(Color.LIGHTYELLOW);
+
+        AddButton("Опція - 1", (int) (scene.getWidth() / 3.7) ,
+                (int) (scene.getHeight() / 1.4)).
+                setOnAction(e ->{
+                    second = new Scene(objects1,500,270);
+                    Stage secondStage = new Stage();
+                    ProgramStage1=secondStage;
+
+                    secondStage.setTitle("Опція 1");
+                    secondStage.show();
+                    second.setFill(Color.LIGHTYELLOW);
+
+                    Label a5 = new Label("Введіть числове значення: ");
+                    a5.setFont(Font.font(18));
+                    a5.setLayoutX(150);
+                    a5.setLayoutY(40);
+                    objects1.getChildren().add(a5);
+
+                    a = new TextField();
+                    a.setStyle("-fx-border-coloВr: blue");
+                    a.setLayoutX(180);
+                    a.setLayoutY(100);
+                    a.setFont(Font.font(14));
+                    Pane test1 = new Pane();
+                    test1.getChildren().add(a);
+                    a.setAlignment(Pos.TOP_CENTER);
+                    objects1.getChildren().add(test1);
+
+                    TextRes1 = new Label("");
+                    TextRes1.setLayoutX(60);
+                    TextRes1.setLayoutY(150);
+                    TextRes1.setFont(Font.font(15));
+                    test1.getChildren().add(TextRes1);
+                    TextRes1.setAlignment(Pos.TOP_CENTER);
+                    objects1.getChildren().add(TextRes1);
+
+
+                    AddButton1("Визначити час від початку доби", (int) (second.getWidth() / 3) ,
+                            (int) (second.getHeight() / 1.3)).
+                            setOnAction(actionEvent -> Calculate());
+
+                    ProgramStage1.setResizable(false);
+                    ProgramStage1.getIcons().add(new Image("C:/Users/38066/Desktop/index.jpg"));
+                    ProgramStage1.setScene(second);
+
+                });
+        AddButton( "Опція - 2", (int) (scene.getWidth() / 1.7) ,
+                (int) (scene.getHeight() / 1.4)).
+                setOnAction(e ->{
+                    third = new Scene(objects2,500,270);
+                    Stage thirdStage = new Stage();
+                    ProgramStage2=thirdStage;
+
+                    thirdStage.setTitle("Опція 2");
+                    thirdStage.show();
+                    third.setFill(Color.LIGHTYELLOW);
+
+                    Label a6 = new Label("Введіть цифру від 1 до 7: ");
+                    a6.setFont(Font.font(18));
+                    a6.setLayoutX(150);
+                    a6.setLayoutY(40);
+                    objects2.getChildren().add(a6);
+
+                    b = new TextField();
+                    b.setStyle("-fx-border-coloВr: blue");
+                    b.setLayoutX(180);
+                    b.setLayoutY(100);
+                    b.setFont(Font.font(14));
+                    Pane test2 = new Pane();
+                    test2.getChildren().add(b);
+                    b.setAlignment(Pos.TOP_CENTER);
+                    objects2.getChildren().add(test2);
+
+                    TextRes2 = new Label("");
+                    TextRes2.setLayoutX(70);
+                    TextRes2.setLayoutY(150);
+                    TextRes2.setFont(Font.font(15));
+                    test2.getChildren().add(TextRes2);
+                    TextRes2.setAlignment(Pos.TOP_CENTER);
+                    objects2.getChildren().add(TextRes2);
+
+
+                      AddButton2("Визначити день тижня", (int) (third.getWidth() / 2.7) ,
+                            (int) (third.getHeight() / 1.3)).
+                            setOnAction(actionEvent -> Calculate1());
+
+                    ProgramStage2.setResizable(false);
+                    ProgramStage2.getIcons().add(new Image("C:/Users/38066/Desktop/index.jpg"));
+                    ProgramStage2.setScene(third);
+
+                });
+
+
+        Label a1 = new Label("Оберіть опцію: ");
+        a1.setFont(Font.font(18));
+         a1.setLayoutX(190);
+         a1.setLayoutY(40);
+        objects.getChildren().add(a1);
+
+        Label a2 = new Label("1 - Визначити  скільки  годин,  хвилин  та секунд пройшло з ");
+        a2.setFont(Font.font(15));
+        a2.setLayoutX(40);
+        a2.setLayoutY(80);
+        objects.getChildren().add(a2);
+
+        Label a3 = new Label("початку доби.");
+        a3.setFont(Font.font(15));
+        a3.setLayoutX(40);
+        a3.setLayoutY(100);
+        objects.getChildren().add(a3);
+
+        Label a4 = new Label("2 - Визначити день тижня за введеною цифрою.");
+        a4.setFont(Font.font(15));
+        a4.setLayoutX(40);
+        a4.setLayoutY(130);
+        objects.getChildren().add(a4);
+
+        programStage.setResizable(false);
+        programStage.setTitle(tittle);
+        programStage.setScene(scene);
+        programStage.getIcons().add(new Image("C:/Users/38066/Desktop/index.jpg"));
+        programStage.show();
+    }
+
+    private Button AddButton(String text, int xPos, int yPos) {
+        Button ab = new Button(text);
+        ab.setLayoutX(xPos);
+        ab.setLayoutY(yPos);
+        ab.setMinSize(30, 34);
+        objects.getChildren().add(ab);
+        return ab;
+    }
+    private Button AddButton1(String text, int xPos1, int yPos1) {
+        Button abcz = new Button(text);
+        abcz.setLayoutX(xPos1);
+        abcz.setLayoutY(yPos1);
+        abcz.setMinSize(30,34);
+        objects1.getChildren().add(abcz);
+        return abcz;
+
+    }
+        private Button AddButton2(String text, int xPos2, int yPos2) {
+            Button abc = new Button(text);
+            abc.setLayoutX(xPos2);
+            abc.setLayoutY(yPos2);
+            abc.setMinSize(30,34);
+            objects2.getChildren().add(abc);
+            return abc;
+    }
+    private void Calculate() {
+    int x;
+    String fieldText1 = a.getText();
+    int value;
+    try{
+        value = Integer.parseInt(fieldText1);
+        if (value <= 0){TextRes1.setText("Ви ввели від'ємне значення, час назад не вернути ;)");}
+        else {
+            int h = value / 3600;
+            int rem = value - h * 3600;
+            int m = rem / 60;
+            int s = rem - m * 60;
+            TextRes1.setText("З початку доби пройшло: " + h + " годин " + m + " хвилин " + s + " секунд ");
+        }
+    }
+    catch (Exception ex)
+    {
+        TextRes1.setText("Введіть числове значення!");
+    }
+    }
+       private void Calculate1() {
+        int x;
+        String fieldText2 = b.getText();
+           int value;
+        try {
+            value = Integer.parseInt(fieldText2);
+            if (value >7 || value <= 0 ){TextRes2.setText("Ви ввели цифру, яка не відповідає жодному дню тижня!");}
+            switch (value){
+                case 1:
+                    TextRes2.setText("Понеділок");
+                    break;
+                case 2:
+                    TextRes2.setText("Вівторок");
+                    break;
+                case 3:
+                    TextRes2.setText("Середа");
+                    break;
+                case 4:
+                    TextRes2.setText("Четвер");
+                    break;
+                case 5:
+                    TextRes2.setText("П'ятниця");
+                    break;
+                case 6:
+                    TextRes2.setText("Субота");
+                    break;
+                case 7:
+                    TextRes2.setText("Неділя");
+                    break;
+            }
+        } catch (Exception ex) {
+            TextRes2.setText("Введіть числове значення!");
+        }
+    }
+}
