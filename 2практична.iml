@@ -1,28 +1,122 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_17">
-    <output url="file://$MODULE_DIR$/target/classes" />
-    <output-test url="file://$MODULE_DIR$/target/test-classes" />
-    <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
-      <excludeFolder url="file://$MODULE_DIR$/target" />
-    </content>
-    <orderEntry type="inheritedJdk" />
-    <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:17.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:win:17.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:17.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:win:17.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:17.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:win:17.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:17.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:win:17.0.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-api:5.8.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.opentest4j:opentest4j:1.2.0" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-commons:1.8.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.apiguardian:apiguardian-api:1.1.2" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.8.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.8.1" level="project" />
-  </component>
-</module>
+package com.example.demo;
+
+import javafx.application.Application;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
+public class HelloApplication extends Application {
+    private Stage programStage;
+    private Scene scene;
+    private TextField a22;
+    private TextField b;
+    private Label result;
+    private Group objects = new Group();
+
+    public static void main(String[] args) {
+        launch();
+    }
+
+    @Override
+    public void start(Stage stage) throws IOException {
+        programStage = stage;
+        SetStage("Практична 2 - 5 Варіант");
+    }
+
+    private void SetStage(String tittle) {
+
+        scene = new Scene(objects, 500, 270);
+        scene.setFill(Color.LIGHTYELLOW);
+
+        AddButton("Обчислити", (int) (scene.getWidth() / 2.5) ,
+                (int) (scene.getHeight() / 1.25)).
+                setOnAction(actionEvent -> Calculate());
+
+        a22 = new TextField();
+        a22.setStyle("-fx-border-coloВr: blue");
+        a22.setLayoutX(300);
+        a22.setLayoutY(100);
+        Pane test1 = new Pane();
+        test1.getChildren().add(a22);
+        a22.setAlignment(Pos.TOP_CENTER);
+        objects.getChildren().add(test1);
+
+        b = new TextField();
+        b.setStyle("-fx-border-color: blue");
+        b.setLayoutX(230);
+        b.setLayoutY(140);
+        Pane test2 = new Pane();
+        test2.getChildren().add(b);
+        b.setAlignment(Pos.TOP_CENTER);
+        objects.getChildren().add(test2);
+
+        result = new Label();
+        result.setLayoutX(160);
+        result.setLayoutY(180);
+        result.setFont(Font.font(16));
+        test1.getChildren().add(result);
+        test2.getChildren().add(result);
+        result.setAlignment(Pos.TOP_CENTER);
+
+        Label description = new Label("Обчислення виразу: x=_/a-b^2-_/a*b");
+        description.setStyle("-fx-border-color: blue");
+        description.setFont(Font.font(18));
+        description.setLayoutX(100);
+        description.setLayoutY(40);
+        objects.getChildren().add(description);
+
+        Label a1 = new Label("Введіть значення a:");
+        a1.setFont(Font.font(15));
+        a1.setLayoutX(150);
+        a1.setLayoutY(100);
+        objects.getChildren().add(a1);
+
+        Label b1 = new Label("Введіть значення b:");
+        b1.setFont(Font.font(15));
+        b1.setLayoutX(80);
+        b1.setLayoutY(140);
+        objects.getChildren().add(b1);
+
+        programStage.setResizable(false);
+        programStage.setTitle(tittle);
+        programStage.setScene(scene);
+        programStage.getIcons().add(new Image("C:/Users/38066/Desktop/index.jpg"));
+        programStage.show();
+    }
+    private Button AddButton(String text, int xPos, int yPos) {
+        Button a = new Button(text);
+        a.setLayoutX(xPos);
+        a.setLayoutY(yPos);
+        a.setMinSize(30,34);
+        objects.getChildren().add(a);
+        return a;
+    }
+
+    private void Calculate() {
+        float x;
+        String fieldText1 = a22.getText();
+        String fieldText2 = b.getText();
+        float value, value1, value2;
+        try {
+            value1 = Integer.parseInt(fieldText1);
+            value2 = Integer.parseInt(fieldText2);
+            x = (float) (Math.sqrt(value1 - Math.pow(value2, 2)) + Math.sqrt(value1 * value2));
+            if (Double.isNaN(x)) {result.setText("Обчислення не можливе!");}
+            else{result.setText(String.valueOf("Результат: " + x ));}
+        } catch (Exception ex) {result.setText("Введіть числові значення!");
+        }
+    }
+}
